@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app" />
+
+    <script type="text/babel">
+
+        class Calculator extends React.Component
+        {
+            render()
+            {
+                return(
+                    <div>
+                        <input type="number" id="field1" />
+                        <input type="number" id="field2" />
+                        <input type="number" id="answer" placeholder="Answer"/>
+                        <button onClick={this.add}>add</button>
+                        <button onClick={this.subtract}>subtract</button>
+                        <button onClick={this.multiply}>multiply</button>
+                        <button onClick={this.divide}>divide</button>
+                    </div>
+                );
+            }
+            add = () =>
+            {
+                let field1 = document.getElementById("field1").valueAsNumber;
+                let field2 = document.getElementById("field2").valueAsNumber;
+                document.getElementById("answer").value = field1 + field2;
+            }
+            subtract = () =>
+            {
+                let field1 = document.getElementById("field1").valueAsNumber;
+                let field2 = document.getElementById("field2").valueAsNumber;
+                document.getElementById("answer").value = field1 - field2;
+            }
+            multiply = () =>
+            {
+                let field1 = document.getElementById("field1").valueAsNumber;
+                let field2 = document.getElementById("field2").valueAsNumber;
+                document.getElementById("answer").value = field1 * field2;
+            }
+            divide = () =>
+            {
+                let field1 = document.getElementById("field1").valueAsNumber;
+                let field2 = document.getElementById("field2").valueAsNumber;
+                document.getElementById("answer").value = field1 / field2;
+            }
+        }
+        class App extends React.Component
+        {
+            render()
+            {
+                return(
+                    <Calculator />
+                );
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+</body>
+
+</html>

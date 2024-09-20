@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Addition</title>
+    <style>
+        .incorrect
+        {
+            color: red;
+        }
+        .center
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    num1: 1,
+                    num2: 2,
+                    score: 0,
+                    response: "",
+                    incorrect: false
+                }
+            }
+            render()
+            {
+                if (this.state.score >= 5)
+                {
+                    return this.renderWin();
+                }
+                else
+                {
+                    return this.renderProblem();
+                }
+            }
+            renderWin()
+            {
+                return(
+                    <h1>Congratulations!, you have won the game.</h1>
+                );
+            }
+            renderProblem() {
+                return (
+                    <div className="center">
+                        <div>
+                            <h1 className={this.state.incorrect ? "incorrect" : ""}>{this.state.num1} + {this.state.num2}</h1>
+                        </div>
+                        <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse} value={this.state.response}></input>
+                        <div>
+                            <h1>Score: {this.state.score}</h1>
+                        </div>
+                        <button onClick={this.resetGame}>Reset</button>
+                    </div>
+                );
+            }
+            updateResponse = (event) => {
+                this.setState({ response: event.target.value });
+            }
+            inputKeyPress = (event) =>
+            {
+                if (event.key === "Enter")
+                {
+                    const answer = parseInt(this.state.response);
+                    if (this.state.num1 + this.state.num2 === answer)
+                    {
+                        this.setState(function(state, props){
+                            return ({num1: Math.ceil(Math.random() * 10),
+                                     num2: Math.ceil(Math.random() * 10),
+                                     response: "",
+                                     score: this.state.score + 1
+                            });
+                        });
+                    }
+                    else
+                    {
+                        this.setState({
+                            response: "",
+                            incorrect: true
+                        });
+                    }
+                }
+            }
+            resetGame = () =>
+            {
+                this.setState({num1: 1, num2: 1, score: 0, incorrect: false, response: ""});
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+</body>
+
+</html>
