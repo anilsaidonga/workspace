@@ -3,12 +3,12 @@ using namespace std;
 
 int main(void)
 {
-	int n;
+	long n;
 	cin >> n;
-	int sum = n * (n + 1)/2;
+	long sum = n * (n + 1)/2;
 	for (int i = 0; i < (n - 1); i++)
 	{
-		int num;
+		long num;
 		cin >> num;
 		sum = sum - num;
 	}
