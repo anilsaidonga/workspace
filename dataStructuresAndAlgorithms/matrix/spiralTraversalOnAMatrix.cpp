@@ -44,7 +44,7 @@ void spiralTraversal(vector<vector<int>> &arr, int rows, int columns)
 		{
 			for (int i = rowEnd; i >= rowBegin; i--)
 			{
-				cout << arr[i][rowBegin] << " ";
+				cout << arr[i][columnBegin] << " ";
 			}
 			direction = 0;
 			columnBegin++;

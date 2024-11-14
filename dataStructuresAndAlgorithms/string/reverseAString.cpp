@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-void reverseAString(vector<char> &v)
+void reverseAString(vector<char> &v) // Time: O(n), Space: O(1)
 {
 	reverse(v.begin(), v.end());
 }
