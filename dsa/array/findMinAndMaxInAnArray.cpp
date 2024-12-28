@@ -10,7 +10,8 @@ using namespace std;
 
 * Time : O(nlogn) as we using sorting algorithm
 
-* Space : O(1)
+* Space : O(n) because we are using merge sort algorithm, that is sorting taking extra space.
+		  if we use sort function defined in algorithm header then we can get O(1), as it is using in place sorting.
 
 */
 
