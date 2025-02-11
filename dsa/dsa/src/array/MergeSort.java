@@ -1,5 +1,16 @@
 package array;
 
+/*
+ * time complexity
+ * 
+ * worst case - O(nlogn)
+ * 
+ * best case - O(nlogn)
+ * 
+ * space complexity - O(n) extra space for storing sorted array is required
+ * 
+ */
+
 public class MergeSort {
 	
 	public static void mergeSort(int[] arr, int begin, int end)
