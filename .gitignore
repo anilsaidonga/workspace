@@ -1,1 +1,8 @@
 /.metadata/
+/dsa/.classpath
+/dsa/.project
+/dsa/.settings
+/dsa/.vscode
+/dsa/array/*.class
+/dsa/array/*.exe
+/.gitignore
