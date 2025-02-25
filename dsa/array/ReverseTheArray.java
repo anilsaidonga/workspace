@@ -80,7 +80,6 @@ public class ReverseTheArray {
 	/* expected approach 4
 	 * time: O(n)
 	 * space: O(1)
-	 * 
 	 */
 	public static void reverseTheArray5(int[] arr)
 	{
