@@ -17,6 +17,8 @@ public class MinAndMaxInArray {
 			arr[i] = sc.nextInt();
 		}
 		
+		
+		
 		for (int i : arr)
 			System.out.print(i + " ");
 		sc.close();
