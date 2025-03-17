@@ -1,6 +1,6 @@
 package utilities;
 
-public class utilities {
+public class Utilities {
 	
 	public static void swap(int[] arr, int i, int j)
 	{

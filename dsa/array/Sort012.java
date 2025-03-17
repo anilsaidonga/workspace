@@ -3,7 +3,7 @@ package array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import utilities.utilities;
+import utilities.Utilities;
 
 public class Sort012 {
 
@@ -85,7 +85,7 @@ public class Sort012 {
 		{
 			if (arr[mid] == 0)
 			{
-				utilities.swap(arr, low, mid);
+				Utilities.swap(arr, low, mid);
 				low++;
 				mid++;
 			}
@@ -95,7 +95,7 @@ public class Sort012 {
 			}
 			else
 			{
-				utilities.swap(arr, mid, high);
+				Utilities.swap(arr, mid, high);
 				high--;
 			}
 		}

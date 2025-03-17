@@ -3,7 +3,7 @@ package array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import utilities.utilities;
+import utilities.Utilities;
 
 public class ReverseTheArray {
 	public static void main(String[] args)
@@ -45,7 +45,7 @@ public class ReverseTheArray {
 	{
 		int i = 0, j = arr.length - 1;
 		while (i > j)
-			utilities.swap(arr, i, j);
+			Utilities.swap(arr, i, j);
 	}
 	
 	/*
@@ -59,7 +59,7 @@ public class ReverseTheArray {
 		int mid = (arr.length - 1) / 2, i = 0;
 		while (i < mid)
 		{
-			utilities.swap(arr, i, arr.length - 1 - i);
+			Utilities.swap(arr, i, arr.length - 1 - i);
 			i++;
 		}
 	}
@@ -73,7 +73,7 @@ public class ReverseTheArray {
 	{
 		if (i >= j)
 			return;
-		utilities.swap(arr, i, j);
+		Utilities.swap(arr, i, j);
 		reverseTheArray4(arr, i + 1, j - 1);
 	}
 	

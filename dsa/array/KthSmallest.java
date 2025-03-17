@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
-import utilities.utilities;
+import utilities.Utilities;
 
 public class KthSmallest {
 
@@ -139,14 +139,14 @@ public class KthSmallest {
 	    for (int j = low + 1; j <= high; j++) {
 	        if (arr[j] <= pivot) {
 	            // Swap elements smaller than or equal to the pivot to the left side
-	            utilities.swap(arr, i, j);
+	            Utilities.swap(arr, i, j);
 	            i++;
 	        }
 	        // We don't need to swap elements greater than the pivot, they are naturally left on the right side
 	    }
 
 	    // Finally, place the pivot element in its correct position
-	    utilities.swap(arr, low, i - 1);
+	    Utilities.swap(arr, low, i - 1);
 	    return i - 1; // Return the index of the pivot
 	}
 
