@@ -32,6 +32,12 @@ public class MedianInARowWiseSortedMatrix {
 		return (temp[((temp.length - 1) / 2)]);
 	}
 	
+	/*
+	 * time complexity: O( log(max - min) * ( m * log n ))
+	 * 				  binary search range * for counting n colums of m rows
+	 * space complexity: O (m * n)
+	 * auxiliary space complexity: O(1)
+	 */
 	public static int medianInARowWiseSortedMatrix2(int[][] arr)
 	{
 		/*
@@ -45,14 +51,48 @@ public class MedianInARowWiseSortedMatrix {
 				   loop end
 		           return min.
 		 */
-		return 0;
+		int m = arr.length, n = arr[0].length, low = 0, high = 0;
+		// find low and high
+		for (int i = 0; i < n; i++)
+		{
+			low = Math.min(arr[i][0], low);
+			high = Math.max(arr[i][n - 1], high);
+		}
+		
+		int desired = ( n * m ) / 2;
+		
+		while (low < high)
+		{
+			int mid = low + (high - low) / 2;
+			
+			int count = 0;
+			for (int i = 0; i < n; i++)
+			{
+				count = count + lessThanEqualsCount(arr[i], mid);
+			}
+			
+			if (count <= desired)
+				low = mid + 1;
+			else
+				high = mid;
+		}
+		return low;
+	}
+	
+	public static int lessThanEqualsCount(int[] arr, int val)
+	{
+		int index = Arrays.binarySearch(arr, val);
+		if (index >= 0 )
+			return index + 1;
+		else
+			return -(index + 1);
 	}
 
 	public static void main(String[] args) {
-		int[][] arr = {{1,3,5,7},
-				   	   {10,11,16,20},
-				   	   {23,30,34,60}};
-		System.out.println(medianInARowWiseSortedMatrix1(arr));
+		int[][] arr = {{1, 2, 3},
+				   	   {4, 5, 6},
+				   	   {7, 8, 9}};
+		System.out.println(medianInARowWiseSortedMatrix2(arr));
 	}
 
 }

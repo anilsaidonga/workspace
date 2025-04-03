@@ -1,10 +1,10 @@
-package donga.sai.anil.sample;
+package io.github.anilsaidonga.application1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SampleApplicationTests {
+class Application1ApplicationTests {
 
 	@Test
 	void contextLoads() {

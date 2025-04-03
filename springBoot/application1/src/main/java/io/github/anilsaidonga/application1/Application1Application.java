@@ -1,13 +1,13 @@
-package donga.sai.anil.sample;
+package io.github.anilsaidonga.application1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SampleApplication {
+public class Application1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SampleApplication.class, args);
+		SpringApplication.run(Application1Application.class, args);
 	}
 
 }
