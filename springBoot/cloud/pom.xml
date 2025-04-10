@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.anilsaidonga</groupId>
-	<artifactId>application1</artifactId>
+	<artifactId>cloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>application1</name>
-	<description>application1</description>
+	<name>cloud</name>
+	<description>backend</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -32,7 +32,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>

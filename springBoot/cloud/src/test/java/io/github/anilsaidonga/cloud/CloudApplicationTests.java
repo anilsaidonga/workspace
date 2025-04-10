@@ -1,10 +1,10 @@
-package io.github.anilsaidonga.application1;
+package io.github.anilsaidonga.cloud;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Application1ApplicationTests {
+class CloudApplicationTests {
 
 	@Test
 	void contextLoads() {

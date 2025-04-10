@@ -7,6 +7,7 @@ public class SpirallyTraversingAMatrix {
 	 * boundary traversal
 	 * time: O(m*n)
 	 * space: O(m*n)
+	 * auxiliary space complexity: O(1) 
 	 * 
 	 */
 	public static int[] spirallyTraverse(int[][] arr)

@@ -9,6 +9,13 @@ public class Utilities {
 		arr[j] = temp;
 	}
 	
+	public static void swap(char[] arr, int i, int j)
+	{
+		char temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+	
 	public static int firstOccurence(int[] arr, int target)
 	{
 		int left = 0, right = arr.length - 1, result = -1;
