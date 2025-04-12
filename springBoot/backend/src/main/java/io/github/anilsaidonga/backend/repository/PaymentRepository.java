@@ -1,18 +1,29 @@
 package io.github.anilsaidonga.backend.repository;
 
-import io.github.anilsaidonga.backend.dto.PaymentRequest;
+import org.springframework.stereotype.Repository;
+
+import io.github.anilsaidonga.backend.dto.PaymentRequestDto;
 import io.github.anilsaidonga.backend.entity.PaymentEntity;
 
+@Repository
 public class PaymentRepository {
 
-	public PaymentEntity getPaymentDetailsById(PaymentRequest paymentRequest) {
+	public PaymentEntity getPaymentDetailsById(PaymentRequestDto paymentRequestDto) {
 		
-		PaymentEntity paymentEntity = executeQuery(paymentRequest);
+		PaymentEntity paymentEntity = executeQuery(paymentRequestDto);
 		return paymentEntity;
 	}
 
-	private PaymentEntity executeQuery(PaymentRequest paymentRequest) {
+	private PaymentEntity executeQuery(PaymentRequestDto paymentRequestDto) {
 		
+		// connect with db and fetch the response
+		
+		PaymentEntity paymentEntity = new PaymentEntity();
+		paymentEntity.setPaymentId(paymentRequestDto.getPaymentId());
+		paymentEntity.setPaymentAmount(100.00);
+		paymentEntity.setPaymentCurrency("INR");
+		
+		return paymentEntity;
 	}
 
 }

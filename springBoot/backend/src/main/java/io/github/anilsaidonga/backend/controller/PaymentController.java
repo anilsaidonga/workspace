@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.anilsaidonga.backend.dto.PaymentRequest;
-import io.github.anilsaidonga.backend.dto.PaymentResponse;
+import io.github.anilsaidonga.backend.dto.PaymentRequestDto;
+import io.github.anilsaidonga.backend.dto.PaymentResponseDto;
 import io.github.anilsaidonga.backend.service.PaymentService;
 
 @RestController
@@ -19,16 +19,16 @@ public class PaymentController {
 	PaymentService paymentService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PaymentResponse> getPaymentDetailsById(@PathVariable Long id)
+	public ResponseEntity<PaymentResponseDto> getPaymentDetailsById(@PathVariable Long id)
 	{
 		// map incoming data to internal request dto
-		PaymentRequest paymentRequest = new PaymentRequest();
-		paymentRequest.setPaymentId(id);
+		PaymentRequestDto paymentRequestDto = new PaymentRequestDto();
+		paymentRequestDto.setPaymentId(id);
 		
 		// pass this request dto to service layer
-		PaymentResponse paymentResponse = paymentService.getPaymentDetailsById(paymentRequest);
+		PaymentResponseDto paymentResponse = paymentService.getPaymentDetailsById(paymentRequestDto);
 		
-		
+		return ResponseEntity.ok(paymentResponse);
 	}
 
 }

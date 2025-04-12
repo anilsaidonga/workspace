@@ -1,6 +1,6 @@
 package io.github.anilsaidonga.backend.dto;
 
-public class PaymentRequest {
+public class PaymentRequestDto {
 	
 	private long paymentId;
 
