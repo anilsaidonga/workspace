@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>File Table with Hover Icons</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .position-relative {
+      position: relative;
+    }
+
+    .hover-icons {
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      transform: translateY(-50%);
+      display: none;
+      gap: 0.5rem;
+    }
+
+    tr:hover .hover-icons {
+      display: inline-flex;
+    }
+
+    .cell-content {
+      padding-right: 60px;
+      /* Reserve space so layout doesn't shift */
+    }
+
+    .icon-btn {
+      color: #6c757d;
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      color: #0d6efd;
+    }
+
+    .background-color
+    {
+      background-color: rgb(4, 4, 4);
+    }
+
+    .text-color
+    {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div className="d-flex justify-content-center background-color">
+    <h2 className="text-color">☁️ OpenCloud</h2>
+  </div>
+  <div className="p-4">
+    <div className="container input-group">
+      <input type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+        aria-label="Upload" />
+      <button className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+    </div>
+
+    <div className="container mt-5">
+      <table className="table table-hover align-middle">
+        <thead className="table-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Report_Q1.pdf</td>
+            <td>1.2 MB</td>
+            <td className="position-relative">
+              <div className="cell-content">22/33/44</div>
+              <div className="hover-icons">
+                <i className="bi bi-download icon-btn" onclick="downloadFile('Report_Q1.pdf')" title="Download"></i>
+                <i className="bi bi-trash icon-btn" onclick="deleteFile('Report_Q1.pdf')" title="Delete"></i>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Report_Q1.pdf</td>
+            <td>1.2 MB</td>
+            <td className="position-relative">
+              <div className="cell-content">22/33/44</div>
+              <div className="hover-icons">
+                <i className="bi bi-download icon-btn" onclick="downloadFile('Report_Q1.pdf')" title="Download"></i>
+                <i className="bi bi-trash icon-btn" onclick="deleteFile('Report_Q1.pdf')" title="Delete"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function downloadFile(fileName) {
+      alert("Downloading " + fileName);
+      // Implement actual download logic
+    }
+
+    function deleteFile(fileName) {
+      alert("Deleting " + fileName);
+      // Implement actual delete logic
+    }
+
+    function toggleAll(source) {
+      const checkboxes = document.querySelectorAll('.row-checkbox');
+      checkboxes.forEach(cb => cb.checked = source.checked);
+    }
+  </script>
+
+</body>
+
+</html>
