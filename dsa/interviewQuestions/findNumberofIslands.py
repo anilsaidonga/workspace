@@ -36,3 +36,5 @@ grid = [
 ]
 
 print(num_islands_bfs(grid))  # Output: 3
+
+print('Hello!')
