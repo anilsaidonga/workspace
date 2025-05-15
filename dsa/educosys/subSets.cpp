@@ -47,10 +47,10 @@ void helper2(vector<int>& nums, int ind, vector<int>& curr, vector<vector<int>>&
 
 int main(void)
 {
-	vector<int> nums = {0};
+	vector<int> nums = {1, 2};
 	vector<vector<int>> res;
 	vector<int> curr;
-	helper2(nums, static_cast<int>(nums.size() - 1), curr, res);
+	helper1(nums, 0, curr, res);
 	for (int i = 0; i < static_cast<int>(res.size()); i++)
 	{
 		for (int j = 0; j < static_cast<int>(res[i].size()); j++)
