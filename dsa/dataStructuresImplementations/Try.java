@@ -33,8 +33,6 @@ public class Try {
 		for (car obj : arr)
 			System.out.println(obj.carName + " " + obj.carType);
 		
-		Deque
-		
 	}
 
 }
