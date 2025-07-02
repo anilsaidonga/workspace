@@ -3,46 +3,61 @@
 using namespace std;
 
 /*
- * tabulation (bottom up)
+ * recursion
  * time complexity: O(2^n)
  * space complexity: O(n)
  */
 
-int helper1(vector<int>& v, int ind)
-{
-	if (ind >= static_cast<int>(v.size())) return 0;
-	int include = v[ind] + helper1(v, ind + 2);
-	int exclude = helper1(v, ind + 1);
-	return max(include, exclude);
+// int helper(vector<int>& cost, int ind)
+// {
+//     if (ind >= cost.size())
+//     {
+//         return 0;
+//     }
+//
+//     // include wala case
+//     int inc = cost[ind] + helper(cost, ind + 2);
+//
+//     // exclude wala case
+//     int exc = helper(cost, ind + 1);
+//
+//     return max(inc, exc);
+// }
+//
+// int rob(vector<int>& cost)
+// {
+//     return helper(cost, 0);
+// }
+//
+// int main(void)
+// {
+//     vector<int> cost = {10, 15, 25};
+//     cout << rob(cost) << endl;
+//     return 0;
+// }
+
+int helper(vector<int>& cost, int ind, vector<int>& dp) {
+
+    if (ind >= cost.size()) return 0;
+
+    if (dp[ind] != -1) return dp[ind];
+
+    // include wala case
+    int inc = cost[ind] + helper(cost, ind + 2, dp);
+
+    // exclude wala case
+    int exc = helper(cost, ind + 1, dp);
+
+    return dp[ind] = max(inc, exc);
 }
 
-int rob1(vector<int>& v)
-{
-	return helper1(v, 0);
+int rob(vector<int>& cost) {
+    vector<int> dp(cost.size(), -1);
+    return helper(cost, 0, dp);
 }
 
-/*
- * memoization (top down)
- * time complexity: O(2^n)
- * space complexity: O(n)
- */
-
-int helper2(vector<int>& v, int ind)
-{
-	if (ind < 0) return 0;
-	int include = v[ind] + helper2(v, ind - 2);
-	int exclude = helper2(v, ind - 1);
-	return max(include, exclude);
-}
-
-int rob2(vector<int>& v)
-{
-	return helper2(v, v.size() - 1);
-}
-
-int main(void)
-{
-	vector<int> v = {2, 7, 9, 3, 1};
-	cout << rob2(v) << endl;
-	return 0;
+int main(void) {
+    vector<int> cost = {10, 15, 25};
+    cout << rob(cost) << endl;
+    return 0;
 }

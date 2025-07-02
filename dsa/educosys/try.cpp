@@ -2,25 +2,32 @@
 #include <vector>
 using namespace std;
 
-void helper(int n, int k, int val, vector<int>& curr, vector<vector<int>>& res)
-{
+// int main(void)
+// // {
+// //     vector<int> v = {1, 2, 3};
+// //     vector<vector<int>> res;
+// //     for (int i = 0; i < v.size(); i++) {
+// //         for (int j = i; j < v.size(); j++) {
+// //             vector<int> curr;
+// //             for (int k = i; k <= j; k++) {
+// //                 curr.push_back(v[k]);
+// //             }
+// //             res.push_back(curr);
+// //         }
+// //     }
+// //     return 0;
+// // }
 
-	if (curr.size() == k)
-	{
-		res.push_back(curr);
-		return;
-	}
-	// pick
-	curr.push_back(val);
-	helper(n, k, val + 1, curr, res);
-	curr.pop_back();
+// int main(void) {
+//     vector<int> v = {1, 2, 3};
+//     int maxProduct = INT_MIN;
+//     for (int i = 0; i < v.size(); i++) {
+//         int currProduct = 1;
+//         for (int j = i; j < v.size(); j++) {
+//             currProduct *= v[j];
+//         }
+//         maxProduct = max(maxProduct, currProduct);
+//     }
+//     return 0;
+// }
 
-	// don't pick
-	helper(n, k, val + 1, curr, res);
-}
-vector<vector<int>> combine(int n, int k) {
-	vector<vector<int>> res;
-	vector<int> curr;
-	helper(n, k, 1, curr, res);
-	return res;
-}
