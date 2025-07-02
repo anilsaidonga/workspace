@@ -9,6 +9,6 @@ public class HelloControllerTest {
     void testSayHello() {
         HelloController controller = new HelloController();
         String result = controller.sayHello();
-        assertEquals("Hello!", result);
+        assertEquals("Hello, world!", result);
     }
 }
