@@ -64,7 +64,7 @@ vector<vector<int>> permute2(vector<int>& nums) {
 }
 
 int main(void) {
-    vector<int> nums = {1, 2};
+    vector<int> nums = {1, 2, 3};
     vector<vector<int>> res = permute2(nums);
     return 0;
 }

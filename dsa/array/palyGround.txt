@@ -1,0 +1,6 @@
+setRes
+res
+
+for i = 0 ----> < n:
+    for j = i + 1 ----> < n:
+        for k = j + 1 ----> < n:

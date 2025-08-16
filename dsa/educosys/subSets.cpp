@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+/*
 void helper(vector<int>& nums, int ind, vector<int>& curr, vector<vector<int>>& res)
 {
     if (ind >= nums.size())
@@ -31,3 +31,28 @@ int main(void) {
     vector<vector<int>> res = subsets(nums);
     return 0;
 }
+ */
+
+ vector<vector<int>> subsets(vector<int>& nums)
+ {
+    vector<vector<int>> res;
+    int n = nums.size();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j <= n; j++)
+        {    vector<int> curr;
+            for (int k = i; k <= j; k++)
+            {
+                curr.push_back(nums[k]);
+            }
+            res.push_back(curr);
+        }
+    }
+    return res;
+ }
+
+ int main(void){
+    vector<int> nums = {1, 2, 3};
+    vector<vector<int>> res = subsets(nums);
+    return 0;
+ }

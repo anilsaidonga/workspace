@@ -1,3 +1,4 @@
+package educosys;
 
 public class MaximumProductSubArray {
 

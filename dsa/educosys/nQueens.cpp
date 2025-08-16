@@ -2,57 +2,59 @@
 #include <vector>
 using namespace std;
 
-bool isValid(int r, int c, int n, vector<string>& board)
+bool isValid(int i, int j, int n, vector<string>& board, vector<int>& diagnalUp, vector<int>& diagnalLeft, vector<int>& diagnalDown)
 {
-    // check for left elements within the row
-    for (int col = 0; col < c; col++)
-    {
-        if (board[r][col] == 'Q') return false;
-    }
+    // check for diagnal up
+    if (diagnalUp[(n - 1) + (j - i)] == 1) return false;
 
-    // check for left top diagnal elements
-    for (int row = r, col = c; row >= 0 && col >= 0; row--, col--)
-    {
-        if (board[row][col] == 'Q')
-            return false;
-    }
+    // check for diagnal left
+    if (diagnalLeft[j]) return false;
 
-    // check for left down diagnal elements
-    for (int row = r, col = c; row < n && col >= 0; row++, col--)
-    {
-        if (board[row][col] == 'Q')
-            return false;
-    }
+    // check for diagnal down
+    if (diagnalDown[i + j] == 1) return false;
+
     return true;
 }
-void helper(int c, int n, vector<string>& board, vector<vector<string>>& res)
+void solve(int col, int n, vector<string>& board, vector<vector<string>>& res, vector<int>& diagnalUp, vector<int>& diagnalLeft, vector<int>& diagnalDown)
 {
-    if (c == n)
+    if (col == n)
     {
         res.push_back(board);
         return;
     }
-
-    for (int r = 0; r < n; r++)
+    for (int i = 0; i < n; i++)
     {
-        if (isValid(r, c, n, board))
+        if (isValid(i, col, n, board, diagnalUp, diagnalLeft, diagnalDown))
         {
-            board[r][c] = 'Q';
-            helper(c + 1, n, board, res);
-            board[r][c] = '.';
+            diagnalUp[(n - 1) + (col - i)] = 1;
+            diagnalLeft[col] = 1;
+            diagnalDown[i + col] = 1;
+            board[i][col] = 'Q';
+            solve(col + 1, n, board, res, diagnalUp, diagnalLeft, diagnalDown);
+            board[i][col] = '.';
+            diagnalUp[(n - 1) + (col - i)] = 0;
+            diagnalLeft[col] = 0;
+            diagnalDown[i + col] = 0;
         }
     }
-
 }
 vector<vector<string>> solveNQueens(int n) {
     vector<vector<string>> res;
-    vector<string> board(n, "....");
-    helper( 0, n, board, res);
+    vector<string> board;
+    string row(n, '.');
+    vector<int> diagnalUp((2 * n) - 1, 0);
+    vector<int> diagnalLeft(n, 0);
+    vector<int> diagnalDown((2 * n) - 1, 0);
+    for (int i = 0; i < n; i++)
+    {
+        board.push_back(row);
+    }
+    solve(0, n, board, res, diagnalUp, diagnalLeft, diagnalDown);
     return res;
 }
 
 int main(void)
 {
-    vector<vector<string>> ans = solveNQueens(5);
+    vector<vector<string>> ans = solveNQueens(4);
     return 0;
 }
