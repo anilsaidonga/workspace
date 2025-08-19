@@ -65,6 +65,5 @@ class FractionalKnapsack
 		Arrays.sort(allItems);
 		
 		System.out.println(helper(n, weight, allItems));
-		
 	}
 }
