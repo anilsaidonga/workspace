@@ -52,6 +52,7 @@ class FractionalKnapsack
 		}
 		return maxValue;
 	}
+	
 	public static void main(String[] args)
 	{
 		int n = 3, weight = 50;
