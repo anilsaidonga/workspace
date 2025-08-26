@@ -82,9 +82,9 @@ public class MinimumNumberOfPlatformsRequiredForARailway {
 
 	public static void main(String[] args) {
 		
-		int[] arr = {900,945,955,1100,1500,1800};
-		int[] dep = {920,1200,1130,1150,1900,2000};
-		
+		int[] arr = {1114, 825, 357, 1415, 54};
+		int[] dep = {1740, 1110, 2238, 1535, 2323};
+						
 //		int[] arr = {1020, 1200};
 //		int[] dep = {1050, 1230};
 		

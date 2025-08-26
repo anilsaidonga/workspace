@@ -1,3 +1,5 @@
+package interviewQuestions;
+
 public class Median
 {
     public static double giveMeMedian(int[] arr)
@@ -18,9 +20,9 @@ public class Median
         System.out.println(giveMeMedian(arr));
     }
 }
-
-employee table
-
-empid, empName, salary
-
-select * employee order by salary desc offset 3 limit 1
+//
+//employee table
+//
+//empid, empName, salary
+//
+//select * employee order by salary desc offset 3 limit 1
