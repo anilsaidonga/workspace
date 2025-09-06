@@ -31,6 +31,17 @@ class FractionalKnapsack
 			else return 0;
 		}
 	}
+
+	static class ratioComparator implements Comparator<Item>
+	{
+		@Override
+		public int compare(Item a, Item b)
+		{
+			if (b.ratio > a.ratio) return 1;
+			else if (b.ratio < a.ratio) return -1;
+			else return 0;
+		}
+	}
 	
 	public static int helper(int n, int weight, Item[] allItems)
 	{
@@ -61,8 +72,10 @@ class FractionalKnapsack
 		Item[] allItems = { new Item(100, 20), new Item(60, 10), new Item(120, 30)};
 		
 		//Arrays.sort(allItems, (a, b) -> Double.compare(b.ratio, a.ratio));
+
+		Arrays.sort(allItems, new ratioComparator());
 		
-		Arrays.sort(allItems);
+		//Arrays.sort(allItems);
 		
 		System.out.println(helper(n, weight, allItems));
 	}
