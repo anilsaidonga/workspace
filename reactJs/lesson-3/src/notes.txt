@@ -1,0 +1,12 @@
+What is State?
+
+State is like a component’s memory.
+
+Unlike props (data passed from outside), state is managed inside the component.
+
+When state changes → React re-renders the component automatically.
+
+
+react useState hook
+
+In other words: ✅ normal functions → just do stuff, don’t remember; useState → remembers, updates UI.
