@@ -1,0 +1,12 @@
+Props ( properties ) = data passed down from parent
+
+passing properties from parent component to child component
+
+2 ways:
+    
+    1. pass as a parameter (you need to pass props to child component and use them with {props.name} like that )
+
+    2. use destructuring ( Destructuring makes code cleaner )
+
+props are immutable, you can't change them inside a component ( Props = read-only )
+

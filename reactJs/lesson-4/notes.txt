@@ -1,0 +1,9 @@
+Event handling in reactJs
+
+Key Differences from JavaScript DOM Events
+
+React uses camelCase (onClick, onChange)
+
+React events are wrapped in a SyntheticEvent (works consistently across browsers)
+
+You pass a function reference, not a string

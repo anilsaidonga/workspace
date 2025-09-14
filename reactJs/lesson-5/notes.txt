@@ -1,0 +1,13 @@
+Use .map() to render lists
+
+Always provide a key prop
+
+Prefer unique IDs over indexes
+
+How to render lists in React using .map()
+
+What key is and why React needs it
+
+How index works automatically (comes from .map())
+
+Why unique IDs are better than indexes
