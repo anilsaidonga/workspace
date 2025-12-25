@@ -1,0 +1,8 @@
+Inheritance
+    a "is a" b
+
+Composition
+    person "has a" heart. here heart cannot live without person
+
+Agregation
+    person "has a" laptop. here laptop can live without person

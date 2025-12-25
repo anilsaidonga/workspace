@@ -21,7 +21,7 @@ public class SubsetSum {
 	{
 		if (sum == 0) return true;
 		
-		if (ind < 0) return false;
+		if (ind < 0 || sum < 0) return false;
 		
 		if (dp[ind][sum] != null) return dp[ind][sum];
 		
