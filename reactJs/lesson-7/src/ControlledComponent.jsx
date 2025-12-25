@@ -4,22 +4,21 @@ function ControlledComponent()
 {
     const [text, setText] = useState("");
 
-    function submit(event)
+    function formSubmitted()
     {
         alert("form submitted!");
     }
 
-    function changed(event)
+    function changed(e)
     {
-        setText(event.target.value);
+        setText(e.target.value);
     }
-
+    
     return (
         <div>
-            <form onSubmit={submit}>
+            <form onSubmit={formSubmitted}>
                 <input type="text" value={text} onChange={changed}></input>
-
-                <button type="submit">Submit</button>
+                <button type='submit'>Submit</button>
             </form>
         </div>
     );
