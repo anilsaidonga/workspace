@@ -12,18 +12,18 @@ The goal of this phase is to establish the database structure and core Java obje
     *   [x] Set up Spring Boot project with necessary dependencies (Spring Web, Spring Data JPA, Spring Security, H2/PostgreSQL Driver).
     *   [x] Configure database connection in `application.properties`.
 
-*   [ ] **Task 1.2: Create Core JPA Entities**:
-    *   [ ] `User.java`: Represents `CUSTOMER`, `ADMIN`, `MECHANIC`. Include fields like `phone_number`, `name`, `role`, and `status` (PROVISIONAL, VERIFIED).
-    *   [ ] `Vehicle.java`: Represents a customer's vehicle. Include `vehicle_number`, `type`, `fuel_type`, and `condition` (Drivable, Non-Drivable). Link to `User`.
-    *   [ ] `JobCard.java`: The central entity. Include `job_type` (Workshop, Doorstep), `status`, and relationships to `User` and `Vehicle`.
-    *   [ ] `Appointment.java`: For online bookings. Include `appointment_type` (Self Drive, Tow Required, Diagnosis), `time_slot`, and `status`.
-    *   [ ] `Tow.java`: For tow requests. Include `pickup_location` and `status`.
-    *   [ ] `Estimate.java`: For repair estimates. Include lists for `labour_items` and `parts_items`.
-    *   [ ] `Part.java`: For inventory management. Include `name` and `quantity`.
-    *   [ ] `Payment.java`: For billing. Include `amount`, `mode`, and `status`.
+*   [x] **Task 1.2: Create Core JPA Entities**:
+    *   [x] `User.java`: Represents `CUSTOMER`, `ADMIN`, `MECHANIC`. Include fields like `phone_number`, `name`, `role`, and `status` (PROVISIONAL, VERIFIED).
+    *   [x] `Vehicle.java`: Represents a customer's vehicle. Include `vehicle_number`, `type`, `fuel_type`, and `condition` (Drivable, Non-Drivable). Link to `User`.
+    *   [x] `JobCard.java`: The central entity. Include `job_type` (Workshop, Doorstep), `status`, and relationships to `User` and `Vehicle`.
+    *   [x] `Appointment.java`: For online bookings. Include `appointment_type` (Self Drive, Tow Required, Diagnosis), `time_slot`, and `status`.
+    *   [x] `Tow.java`: For tow requests. Include `pickup_location` and `status`.
+    *   [x] `Estimate.java`: For repair estimates. Include lists for `labour_items` and `parts_items`.
+    *   [x] `Part.java`: For inventory management. Include `name` and `quantity`.
+    *   [x] `Payment.java`: For billing. Include `amount`, `mode`, and `status`.
 
-*   [ ] **Task 1.3: Create Repositories**:
-    *   [ ] Create Spring Data JPA repositories for all entities (e.g., `UserRepository`, `JobCardRepository`, etc.).
+*   [x] **Task 1.3: Create Repositories**:
+    *   [x] Create Spring Data JPA repositories for all entities (e.g., `UserRepository`, `JobCardRepository`, etc.).
 
 ---
 
