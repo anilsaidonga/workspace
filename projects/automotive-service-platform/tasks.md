@@ -8,9 +8,9 @@ This document breaks down the entire project implementation into logical, sequen
 
 The goal of this phase is to establish the database structure and core Java objects.
 
-*   [ ] **Task 1.1: Project Initialization**:
-    *   [ ] Set up Spring Boot project with necessary dependencies (Spring Web, Spring Data JPA, Spring Security, H2/PostgreSQL Driver).
-    *   [ ] Configure database connection in `application.properties`.
+*   [x] **Task 1.1: Project Initialization**:
+    *   [x] Set up Spring Boot project with necessary dependencies (Spring Web, Spring Data JPA, Spring Security, H2/PostgreSQL Driver).
+    *   [x] Configure database connection in `application.properties`.
 
 *   [ ] **Task 1.2: Create Core JPA Entities**:
     *   [ ] `User.java`: Represents `CUSTOMER`, `ADMIN`, `MECHANIC`. Include fields like `phone_number`, `name`, `role`, and `status` (PROVISIONAL, VERIFIED).
