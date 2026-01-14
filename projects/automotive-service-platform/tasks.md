@@ -31,11 +31,11 @@ The goal of this phase is to establish the database structure and core Java obje
 
 Implement the core business logic and expose it via REST APIs.
 
-*   [ ] **Task 2.1: Authentication & Authorization**:
-    *   [ ] Implement JWT-based security for authenticating users.
-    *   [ ] Set up `UserDetailsService` to load user data.
-    *   [ ] Configure role-based access control (`@PreAuthorize`) for endpoints (ADMIN, MECHANIC, CUSTOMER).
-    *   [ ] Implement OTP logic for customer verification.
+*   [x] **Task 2.1: Authentication & Authorization**:
+    *   [x] Implement JWT-based security for authenticating users.
+    *   [x] Set up `UserDetailsService` to load user data.
+    *   [x] Configure role-based access control (`@PreAuthorize`) for endpoints (ADMIN, MECHANIC, CUSTOMER).
+    *   [x] Implement OTP logic for customer verification.
 
 *   [ ] **Task 2.2: Customer & Vehicle Management APIs**:
     *   [ ] Create `CustomerController` with endpoints for admin to manage customers (CRUD).

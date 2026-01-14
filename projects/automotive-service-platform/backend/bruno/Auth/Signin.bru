@@ -1,0 +1,18 @@
+meta {
+  name: Signin
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/auth/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "9876543210",
+    "password": "password123"
+  }
+}
