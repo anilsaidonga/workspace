@@ -2,6 +2,7 @@ package com.automotiveserviceplatform.entity;
 
 import com.automotiveserviceplatform.enums.JobStatus;
 import com.automotiveserviceplatform.enums.JobType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,9 +31,11 @@ public class JobCard {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id", nullable = false)
+    @JsonIgnore
     private Vehicle vehicle;
 }

@@ -1,0 +1,15 @@
+meta {
+  name: Update Job Status
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8080/api/job-cards/1/status?status=IN_PROGRESS
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessTokenAdmin}}
+}

@@ -5,5 +5,7 @@ public enum JobStatus {
     IN_PROGRESS,
     WAITING_FOR_PARTS,
     QC_PASSED,
-    COMPLETED
+    COMPLETED,
+    ON_HOLD,
+    ABANDONED
 }

@@ -1,0 +1,15 @@
+meta {
+  name: Link Customer
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/edge-cases/link-customer/1?customerId=1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessTokenAdmin}}
+}

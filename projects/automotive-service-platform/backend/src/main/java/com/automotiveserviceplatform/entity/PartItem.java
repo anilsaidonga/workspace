@@ -1,5 +1,6 @@
 package com.automotiveserviceplatform.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class PartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER) // Eager fetch for part details
     @JoinColumn(name = "part_id")
     private Part part;
 
@@ -30,5 +31,6 @@ public class PartItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_id")
+    @JsonIgnore
     private Estimate estimate;
 }

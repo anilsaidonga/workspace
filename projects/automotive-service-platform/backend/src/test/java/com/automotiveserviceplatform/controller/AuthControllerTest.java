@@ -5,7 +5,7 @@ import com.automotiveserviceplatform.enums.AccountStatus;
 import com.automotiveserviceplatform.enums.UserRole;
 import com.automotiveserviceplatform.payload.request.LoginRequest;
 import com.automotiveserviceplatform.payload.request.SignupRequest;
-import com.automotiveserviceplatform.repository.UserRepository;
+import com.automotiveserviceplatform.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +34,18 @@ public class AuthControllerTest {
     private UserRepository userRepository;
 
     @Autowired
+    private VehicleRepository vehicleRepository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private JobCardRepository jobCardRepository;
+    
+    @Autowired
+    private EstimateRepository estimateRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -41,6 +53,11 @@ public class AuthControllerTest {
 
     @BeforeEach
     public void setup() {
+        // Clean up in correct order to avoid foreign key constraint violations
+        estimateRepository.deleteAll();
+        jobCardRepository.deleteAll();
+        appointmentRepository.deleteAll();
+        vehicleRepository.deleteAll();
         userRepository.deleteAll();
     }
 

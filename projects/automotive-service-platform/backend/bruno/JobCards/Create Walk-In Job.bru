@@ -1,0 +1,23 @@
+meta {
+  name: Create Walk-In Job
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/job-cards/walk-in
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessTokenAdmin}}
+}
+
+body:json {
+  {
+    "userId": 1,
+    "vehicleId": 1,
+    "jobType": "WORKSHOP"
+  }
+}

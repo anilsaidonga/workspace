@@ -1,5 +1,6 @@
 package com.automotiveserviceplatform.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +27,6 @@ public class LabourItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_id")
+    @JsonIgnore
     private Estimate estimate;
 }

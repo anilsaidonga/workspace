@@ -1,0 +1,35 @@
+meta {
+  name: Create Estimate
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/estimates
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessTokenAdmin}}
+}
+
+body:json {
+  {
+    "jobCardId": 1,
+    "taxes": 50.00,
+    "labourItems": [
+      {
+        "description": "General Service",
+        "cost": 500.00
+      }
+    ],
+    "partItems": [
+      {
+        "partId": 1,
+        "quantity": 1,
+        "cost": 200.00
+      }
+    ]
+  }
+}

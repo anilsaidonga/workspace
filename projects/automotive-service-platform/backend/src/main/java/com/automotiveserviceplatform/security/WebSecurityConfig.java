@@ -58,8 +58,12 @@ public class WebSecurityConfig {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
           auth.requestMatchers("/api/auth/**").permitAll()
-              .requestMatchers("/api/test/all").permitAll() // Only allow /all publicly
-              .requestMatchers("/api/test/**").authenticated() // Require auth for other test endpoints
+              .requestMatchers("/api/test/all").permitAll()
+              .requestMatchers("/error").permitAll() // Allow error page
+              .requestMatchers("/api/vehicles/**").authenticated()
+              .requestMatchers("/api/appointments/**").authenticated()
+              .requestMatchers("/api/estimates/**").authenticated()
+              .requestMatchers("/api/parts/**").authenticated()
               .anyRequest().authenticated()
         );
     

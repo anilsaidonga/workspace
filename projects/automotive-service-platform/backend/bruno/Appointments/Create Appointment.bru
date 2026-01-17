@@ -1,0 +1,23 @@
+meta {
+  name: Create Appointment
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/appointments
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "vehicleId": 1,
+    "appointmentType": "SELF_DRIVE",
+    "timeSlot": "2026-12-31T10:00:00"
+  }
+}

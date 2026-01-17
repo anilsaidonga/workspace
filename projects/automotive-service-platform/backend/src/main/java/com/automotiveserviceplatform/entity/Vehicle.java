@@ -3,6 +3,7 @@ package com.automotiveserviceplatform.entity;
 import com.automotiveserviceplatform.enums.FuelType;
 import com.automotiveserviceplatform.enums.VehicleCondition;
 import com.automotiveserviceplatform.enums.VehicleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,5 +39,6 @@ public class Vehicle {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 }

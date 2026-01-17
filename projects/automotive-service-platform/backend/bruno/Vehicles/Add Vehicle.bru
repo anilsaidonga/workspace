@@ -1,0 +1,24 @@
+meta {
+  name: Add Vehicle
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/vehicles
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "vehicleNumber": "AP01AB1234",
+    "type": "CAR",
+    "fuelType": "PETROL",
+    "condition": "DRIVABLE"
+  }
+}

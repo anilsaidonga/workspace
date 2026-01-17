@@ -2,6 +2,7 @@ package com.automotiveserviceplatform.entity;
 
 import com.automotiveserviceplatform.enums.AppointmentStatus;
 import com.automotiveserviceplatform.enums.AppointmentType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,9 +36,11 @@ public class Appointment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id", nullable = false)
+    @JsonIgnore
     private Vehicle vehicle;
 }

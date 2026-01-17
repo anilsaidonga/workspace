@@ -37,31 +37,31 @@ Implement the core business logic and expose it via REST APIs.
     *   [x] Configure role-based access control (`@PreAuthorize`) for endpoints (ADMIN, MECHANIC, CUSTOMER).
     *   [x] Implement OTP logic for customer verification.
 
-*   [ ] **Task 2.2: Customer & Vehicle Management APIs**:
-    *   [ ] Create `CustomerController` with endpoints for admin to manage customers (CRUD).
-    *   [ ] Create `VehicleController` for customers to manage their vehicles (CRUD).
+*   [x] **Task 2.2: Customer & Vehicle Management APIs**:
+    *   [x] Create `CustomerController` with endpoints for admin to manage customers (CRUD).
+    *   [x] Create `VehicleController` for customers to manage their vehicles (CRUD).
 
-*   [ ] **Task 2.3: Online Booking & Appointment API**:
-    *   [ ] Create `AppointmentController`.
-    *   [ ] Implement `POST /api/appointments` for customers to book a slot. This endpoint must handle the three paths: `Self Drive`, `Tow Required`, `Diagnosis Only`.
-    *   [ ] Implement `GET /api/appointments/slots` to show available time slots.
-    *   [ ] Implement admin endpoints to view and manage all appointments.
+*   [x] **Task 2.3: Online Booking & Appointment API**:
+    *   [x] Create `AppointmentController`.
+    *   [x] Implement `POST /api/appointments` for customers to book a slot. This endpoint must handle the three paths: `Self Drive`, `Tow Required`, `Diagnosis Only`.
+    *   [x] Implement `GET /api/appointments/slots` to show available time slots.
+    *   [x] Implement admin endpoints to view and manage all appointments.
 
-*   [ ] **Task 2.4: Job Card Lifecycle API**:
-    *   [ ] Create `JobCardController`.
-    *   [ ] Implement `POST /api/job-cards/walk-in` for admins to create a job for a walk-in customer.
-    *   [ ] Implement logic to auto-create a `JobCard` when an appointment is "checked-in".
-    *   [ ] Implement `PUT /api/job-cards/{id}/status` for mechanics and admins to update job status according to the defined lifecycle.
+*   [x] **Task 2.4: Job Card Lifecycle API**:
+    *   [x] Create `JobCardController`.
+    *   [x] Implement `POST /api/job-cards/walk-in` for admins to create a job for a walk-in customer.
+    *   [x] Implement logic to auto-create a `JobCard` when an appointment is "checked-in".
+    *   [x] Implement `PUT /api/job-cards/{id}/status` for mechanics and admins to update job status according to the defined lifecycle.
 
-*   [ ] **Task 2.5: Diagnosis, Estimate & Approval API**:
-    *   [ ] Create `EstimateController`.
-    *   [ ] Implement endpoints for mechanics to add diagnosis details to a job.
-    *   [ ] Implement endpoints for admins to create an `Estimate` for a job.
-    *   [ ] Implement an endpoint for customers to `Accept` or `Reject` an estimate. Store decision history.
+*   [x] **Task 2.5: Diagnosis, Estimate & Approval API**:
+    *   [x] Create `EstimateController`.
+    *   [x] Implement endpoints for mechanics to add diagnosis details to a job.
+    *   [x] Implement endpoints for admins to create an `Estimate` for a job.
+    *   [x] Implement an endpoint for customers to `Accept` or `Reject` an estimate. Store decision history.
 
-*   [ ] **Task 2.6: Edge Case Handling**:
-    *   [ ] Implement logic for a "Vehicle on HOLD" when a towed vehicle arrives without an owner.
-    *   [ ] Design flow for handling abandoned vehicles and partial billing.
+*   [x] **Task 2.6: Edge Case Handling**:
+    *   [x] Implement logic for a "Vehicle on HOLD" when a towed vehicle arrives without an owner.
+    *   [x] Design flow for handling abandoned vehicles and partial billing.
 
 ---
 
