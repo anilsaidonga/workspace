@@ -1,0 +1,18 @@
+meta {
+  name: Staff Login ( Mechanic )
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8080/api/auth/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "8888888888",
+    "password": "mechanicpassword"
+  }
+}

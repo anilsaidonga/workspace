@@ -1,0 +1,18 @@
+meta {
+  name: Staff Login ( Admin )
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/auth/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "9999999999",
+    "password": "adminpassword"
+  }
+}

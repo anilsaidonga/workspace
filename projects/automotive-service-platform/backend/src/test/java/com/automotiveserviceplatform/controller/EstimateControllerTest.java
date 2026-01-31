@@ -7,6 +7,8 @@ import com.automotiveserviceplatform.payload.request.LabourItemRequest;
 import com.automotiveserviceplatform.payload.request.LoginRequest;
 import com.automotiveserviceplatform.payload.request.PartItemRequest;
 import com.automotiveserviceplatform.repository.*;
+import com.automotiveserviceplatform.security.jwt.JwtUtils;
+import com.automotiveserviceplatform.security.services.UserDetailsImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -54,6 +58,9 @@ public class EstimateControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+    
+    @Autowired
+    private JwtUtils jwtUtils;
 
     private String adminToken;
     private String customerToken;
@@ -111,7 +118,7 @@ public class EstimateControllerTest {
         part.setQuantity(10);
         partRepository.save(part);
 
-        // Login Admin
+        // Login Admin (Password Flow)
         LoginRequest adminLogin = new LoginRequest();
         adminLogin.setUsername("9999999999");
         adminLogin.setPassword("adminpassword");
@@ -121,15 +128,11 @@ public class EstimateControllerTest {
                 .andReturn();
         adminToken = objectMapper.readTree(adminResult.getResponse().getContentAsString()).get("accessToken").asText();
 
-        // Login Customer
-        LoginRequest customerLogin = new LoginRequest();
-        customerLogin.setUsername("9876543210");
-        customerLogin.setPassword("password123");
-        MvcResult customerResult = mockMvc.perform(post("/api/auth/signin")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(customerLogin)))
-                .andReturn();
-        customerToken = objectMapper.readTree(customerResult.getResponse().getContentAsString()).get("accessToken").asText();
+        // Login Customer (Manual Token Generation)
+        UserDetailsImpl userDetails = UserDetailsImpl.build(customer);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
+        customerToken = jwtUtils.generateJwtToken(authentication);
     }
 
     @Test

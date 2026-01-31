@@ -57,13 +57,18 @@ public class WebSecurityConfig {
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
-          auth.requestMatchers("/api/auth/**").permitAll()
-              .requestMatchers("/api/test/all").permitAll()
-              .requestMatchers("/error").permitAll() // Allow error page
+          auth.requestMatchers("/bootstrap/**").permitAll() // Allow bootstrap
+              .requestMatchers("/api/auth/signin").permitAll()
+              .requestMatchers("/api/auth/send-otp").permitAll()
+              .requestMatchers("/api/auth/verify-otp").permitAll()
+              .requestMatchers("/api/test/**").permitAll()
+              .requestMatchers("/error").permitAll()
+              .requestMatchers("/api/users/**").authenticated() // Secure user management
               .requestMatchers("/api/vehicles/**").authenticated()
               .requestMatchers("/api/appointments/**").authenticated()
               .requestMatchers("/api/estimates/**").authenticated()
               .requestMatchers("/api/parts/**").authenticated()
+              .requestMatchers("/api/customers/**").authenticated()
               .anyRequest().authenticated()
         );
     

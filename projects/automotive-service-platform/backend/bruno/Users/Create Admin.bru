@@ -1,0 +1,24 @@
+meta {
+  name: Create Admin
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/users/create
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessTokenSuperAdmin}}
+}
+
+body:json {
+  {
+    "phoneNumber": "9999999999",
+    "name": "Admin User",
+    "role": "ADMIN",
+    "password": "adminpassword"
+  }
+}

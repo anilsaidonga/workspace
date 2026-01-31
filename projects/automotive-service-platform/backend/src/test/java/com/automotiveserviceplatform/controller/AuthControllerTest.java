@@ -4,8 +4,10 @@ import com.automotiveserviceplatform.entity.User;
 import com.automotiveserviceplatform.enums.AccountStatus;
 import com.automotiveserviceplatform.enums.UserRole;
 import com.automotiveserviceplatform.payload.request.LoginRequest;
-import com.automotiveserviceplatform.payload.request.SignupRequest;
+import com.automotiveserviceplatform.payload.request.OtpVerificationRequest;
+import com.automotiveserviceplatform.payload.request.PhoneNumberRequest;
 import com.automotiveserviceplatform.repository.*;
+import com.automotiveserviceplatform.service.OtpService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,13 +17,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -50,10 +49,12 @@ public class AuthControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+    
+    @Autowired
+    private OtpService otpService;
 
     @BeforeEach
     public void setup() {
-        // Clean up in correct order to avoid foreign key constraint violations
         estimateRepository.deleteAll();
         jobCardRepository.deleteAll();
         appointmentRepository.deleteAll();
@@ -62,34 +63,19 @@ public class AuthControllerTest {
     }
 
     @Test
-    public void testRegisterUser() throws Exception {
-        SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setUsername("9876543210");
-        signupRequest.setEmail("test@example.com");
-        signupRequest.setPassword("password123");
-        signupRequest.setRole(UserRole.CUSTOMER);
-
-        mockMvc.perform(post("/api/auth/signup")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(signupRequest)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message").value("User registered successfully!"));
-    }
-
-    @Test
-    public void testAuthenticateUser() throws Exception {
-        // Create a user first
-        User user = new User();
-        user.setPhoneNumber("9876543210");
-        user.setEmail("test@example.com");
-        user.setPassword(passwordEncoder.encode("password123"));
-        user.setRole(UserRole.CUSTOMER);
-        user.setStatus(AccountStatus.VERIFIED);
-        userRepository.save(user);
+    public void testStaffLogin() throws Exception {
+        // Create SUPER_ADMIN
+        User admin = new User();
+        admin.setPhoneNumber("0000000000");
+        admin.setName("Super Admin");
+        admin.setPassword(passwordEncoder.encode("supersecret"));
+        admin.setRole(UserRole.SUPER_ADMIN);
+        admin.setStatus(AccountStatus.VERIFIED);
+        userRepository.save(admin);
 
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("9876543210");
-        loginRequest.setPassword("password123");
+        loginRequest.setUsername("0000000000");
+        loginRequest.setPassword("supersecret");
 
         mockMvc.perform(post("/api/auth/signin")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -99,34 +85,24 @@ public class AuthControllerTest {
     }
 
     @Test
-    public void testAccessProtectedResource() throws Exception {
-        // 1. Create User
-        User user = new User();
-        user.setPhoneNumber("9876543210");
-        user.setEmail("test@example.com");
-        user.setPassword(passwordEncoder.encode("password123"));
-        user.setRole(UserRole.CUSTOMER);
-        user.setStatus(AccountStatus.VERIFIED);
-        userRepository.save(user);
+    public void testCustomerOtpFlow() throws Exception {
+        PhoneNumberRequest request = new PhoneNumberRequest();
+        request.setPhoneNumber("9876543210");
 
-        // 2. Login to get Token
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("9876543210");
-        loginRequest.setPassword("password123");
-
-        MvcResult result = mockMvc.perform(post("/api/auth/signin")
+        mockMvc.perform(post("/api/auth/send-otp")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(loginRequest)))
+                .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.message").value("OTP sent successfully!"));
+        
+        // Verify failure with wrong OTP
+        OtpVerificationRequest verifyRequest = new OtpVerificationRequest();
+        verifyRequest.setPhoneNumber("9876543210");
+        verifyRequest.setOtp("000000");
 
-        String response = result.getResponse().getContentAsString();
-        String token = objectMapper.readTree(response).get("accessToken").asText();
-
-        // 3. Access Protected Resource
-        mockMvc.perform(get("/api/test/user")
-                .header("Authorization", "Bearer " + token))
-                .andExpect(status().isOk())
-                .andExpect(content().string("User Content."));
+        mockMvc.perform(post("/api/auth/verify-otp")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(verifyRequest)))
+                .andExpect(status().isBadRequest());
     }
 }

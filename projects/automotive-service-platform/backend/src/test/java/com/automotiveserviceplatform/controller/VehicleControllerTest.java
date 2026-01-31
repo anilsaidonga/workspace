@@ -3,9 +3,10 @@ package com.automotiveserviceplatform.controller;
 import com.automotiveserviceplatform.entity.User;
 import com.automotiveserviceplatform.entity.Vehicle;
 import com.automotiveserviceplatform.enums.*;
-import com.automotiveserviceplatform.payload.request.LoginRequest;
 import com.automotiveserviceplatform.payload.request.VehicleRequest;
 import com.automotiveserviceplatform.repository.*;
+import com.automotiveserviceplatform.security.jwt.JwtUtils;
+import com.automotiveserviceplatform.security.services.UserDetailsImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,9 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -47,6 +49,9 @@ public class VehicleControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+    
+    @Autowired
+    private JwtUtils jwtUtils;
 
     private String token;
     private User user;
@@ -69,19 +74,11 @@ public class VehicleControllerTest {
         user.setStatus(AccountStatus.VERIFIED);
         userRepository.save(user);
 
-        // Login to get Token
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("9876543210");
-        loginRequest.setPassword("password123");
-
-        MvcResult result = mockMvc.perform(post("/api/auth/signin")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(loginRequest)))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        String response = result.getResponse().getContentAsString();
-        token = objectMapper.readTree(response).get("accessToken").asText();
+        // Generate Token manually for Customer
+        UserDetailsImpl userDetails = UserDetailsImpl.build(user);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities());
+        token = jwtUtils.generateJwtToken(authentication);
     }
 
     @Test

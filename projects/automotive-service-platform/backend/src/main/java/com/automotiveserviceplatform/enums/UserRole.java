@@ -1,7 +1,8 @@
 package com.automotiveserviceplatform.enums;
 
 public enum UserRole {
-    CUSTOMER,
+    SUPER_ADMIN,
     ADMIN,
-    MECHANIC
+    MECHANIC,
+    CUSTOMER
 }

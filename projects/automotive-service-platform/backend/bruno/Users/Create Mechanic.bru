@@ -1,0 +1,24 @@
+meta {
+  name: Create Mechanic
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/users/create
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessTokenAdmin}}
+}
+
+body:json {
+  {
+    "phoneNumber": "8888888888",
+    "name": "Mechanic User",
+    "role": "MECHANIC",
+    "password": "mechanicpassword"
+  }
+}
