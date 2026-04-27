@@ -1,0 +1,85 @@
+<div class="login-container">
+  <div class="login-bg"></div>
+  
+  <div class="login-content">
+    <mat-card class="login-card">
+      <mat-card-header class="header">
+        <div class="logo-section">
+          <mat-icon class="logo-icon">directions_car</mat-icon>
+          <div class="logo-text">
+            <mat-card-title>Automotive Service</mat-card-title>
+            <mat-card-subtitle>Platform</mat-card-subtitle>
+          </div>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="subtitle">Staff Login Portal</p>
+
+        <!-- Error Message -->
+        <div class="error-message" *ngIf="loginError">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ loginError }}</span>
+        </div>
+
+        <!-- Login Form -->
+        <form [formGroup]="staffLoginForm" (ngSubmit)="staffLogin()" class="login-form">
+          <!-- Username/Phone/Email -->
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Phone Number or Email</mat-label>
+            <input matInput 
+                   formControlName="username" 
+                   placeholder="Enter phone number or email"
+                   [disabled]="loading"
+                   required>
+            <mat-icon matPrefix>person</mat-icon>
+            <mat-error *ngIf="staffLoginForm.get('username')?.hasError('required')">
+              Required field
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Password</mat-label>
+            <input matInput 
+                   formControlName="password" 
+                   [type]="hidePassword ? 'password' : 'text'"
+                   placeholder="Enter your password"
+                   [disabled]="loading"
+                   required>
+            <mat-icon matPrefix>lock</mat-icon>
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="staffLoginForm.get('password')?.hasError('required')">
+              Required field
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Login Button -->
+          <button mat-raised-button 
+                  color="primary" 
+                  type="submit" 
+                  class="login-btn"
+                  [disabled]="staffLoginForm.invalid || loading">
+            <span *ngIf="!loading">Sign In</span>
+            <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+          </button>
+        </form>
+
+        <!-- Info Section -->
+        <div class="info-section">
+          <p class="info-title">Demo Credentials:</p>
+          <div class="demo-creds">
+            <div class="cred-item">
+              <strong>Admin:</strong> Use phone/email of a created admin
+            </div>
+            <div class="cred-item">
+              <strong>Mechanic:</strong> Use phone/email of a created mechanic
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
